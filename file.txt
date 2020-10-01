@@ -1,0 +1,67 @@
+Web scraping: Gathering information from the internet.
+
+Different from APIs, because with an API you don't have to parse through HTML, and then can be used to output into JSON and XML/
+
+How to do it:
+1) Denconstruct the URL:
+https://www.monster.com/jobs/search/?q=Software-Developer&where=Australia
+
+There is the base URL: The path that brings you to the search functionality.
+https://www.monster.com/jobs/search/
+
+Then there is the query parameters: values declared additionally
+?q=Software-Developer&where=Australia.
+
+** The base URL will stay the same, but the query parameters change
+
+The query parameter can be further broken down:
+1) The start --> ?
+2) Information, where keys are related to their values using: =
+key=value
+3) Separator: multiple query parameters, separated by the &.
+
+so: ?q=Software-Developer&where=Australia.
+
+can be broken into:  2 information in key=value pairs
+q=Software-Developer  and  where=Australia
+
+The bottom line is, adjusting these two values changes your search results
+
+Looking at HTML:
+You can look at it by right clicking and then --> inspect
+
+Right click on elements on the page --> inspect, gives you the corresponding HTML code
+Hover on HTML text to see corresponding elements on the page.
+
+
+2) Scraping HTML from a page
+-- Get site's HTML code into your python script
+== requests library
+
+--> Get html using requests
+import requests     (requests is a library with the get function)
+
+URL = '<your url>'
+page = requests.get(URL)    --> does a HTTP request to URL, gives your HTML data
+and sends back in a Python object
+
+-- You can't scrape everything: Some websites hide their info behind logins.
+You can't scrape a dynamic website that uses JS either. They send JS so your browser can turn into HTML.
+Beautiful Soup can't parse JS code, so you might have to execute the code before you can see the HTML.
+
+P.3 Parse HTML with Beautiful Soup:
+-Library allowing you to interact with HTML.
+-- import the library, and create an insntance of Beautiful Soup
+>>from bs4 import BeautifulSoup
+>>soup = BeautifulSoup(page.content, 'html.parser')
+You create an object that takes html code as input. You use 'html.parser' to instruct Beautiful soup to parse using HTML
+**page.content --> gets html content.
+
+
+Find Elements by ID:
+HTML web page, elements have id attribute. id attribute makes element identifiable on the page.
+parse the page by choosing an element by its ID.
+Look for the <div> tag where your required info is in.
+
+it is here:
+<div class=”My(6px) Pos(r) smartphone_Mt(6px)”>
