@@ -7,6 +7,7 @@ stock_dict = {}
 
 def create_dict():
     global stock_dict
+    stock_dict = {}
     with open('stock_holds.txt', 'r') as fh:
         for line in fh.readlines():
             line = line.replace('\n', '')
