@@ -20,7 +20,7 @@ def main():
         page = requests.get(key.replace(' ', ''))
         soup = BeautifulSoup(page.content, 'html.parser')
         price_now = soup.find('div', {'class': 'My(6px) Pos(r) smartphone_Mt(6px)'}).find('span').text
-        check_value(key, float(price_now))
+        check_value_sell(key, float(price_now))
         header = key[35:].replace(' ', "")
         print(header + " : $" + price_now)
 
@@ -31,10 +31,11 @@ def notify(title, text):
               """.format(text, title))
 
 
-def check_value(company, current_price):
+def check_value_sell(company, current_price):
     value_to_check = stock_dict[company]
     if current_price >= value_to_check:
-        notify('SELL', 'FUCKING SELL')
+        message = f"Sell {company[35:]}, it is {current_price - value_to_check} above your sell price"
+        notify('SELL', message)
 
 
 while True:
