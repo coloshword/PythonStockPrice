@@ -48,6 +48,10 @@ def check_value_sell(company, current_price):
 
 
 while True:
-    print('-' * 15, "CURRENT STOCKS IN POSSESSION", '-' * 15)
-    check_holds()
-    time.sleep(30)
+    try:
+        print('-' * 15, "CURRENT STOCKS IN POSSESSION", '-' * 15)
+        check_holds()
+        time.sleep(30)
+    except AttributeError:
+        notify('CODE BROKE', 'RESTART')
+        break

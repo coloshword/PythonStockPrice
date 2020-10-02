@@ -2,6 +2,7 @@ def add_a_stock():
     urls = []
     prices = []
     base_url = 'https://ca.finance.yahoo.com/quote/'
+    is_bought = input("Enter t if you want to")
     company = input("Enter the stock symbol, enter - if you want to remove a stock: ")
     while company != "":
         if company == "-":
