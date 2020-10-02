@@ -19,15 +19,23 @@ def main():
     for key in stock_dict:
         page = requests.get(key.replace(' ', ''))
         soup = BeautifulSoup(page.content, 'html.parser')
-        results = soup.find('div', {'class': 'My(6px) Pos(r) smartphone_Mt(6px)'}).find('span').text
-        header = key[35:].replace('\n', "")
-        print(header + " : $" + results)
+        price_now = soup.find('div', {'class': 'My(6px) Pos(r) smartphone_Mt(6px)'}).find('span').text
+        check_value(key, float(price_now))
+        header = key[35:].replace(' ', "")
+        print(header + " : $" + price_now)
 
 
 def notify(title, text):
     os.system("""
               osascript -e 'display notification "{}" with title "{}"'
               """.format(text, title))
+
+
+def check_value(company, current_price):
+    value_to_check = stock_dict[company]
+    if current_price >= value_to_check:
+        notify('SELL', 'FUCKING SELL')
+
 
 while True:
     print('-' * 30)
