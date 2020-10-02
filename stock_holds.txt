@@ -1,1 +1,6 @@
-
+https://ca.finance.yahoo.com/quote/FCEL : 2.23
+https://ca.finance.yahoo.com/quote/BAC : 24.25
+https://ca.finance.yahoo.com/quote/PDYPY : 80.20
+https://ca.finance.yahoo.com/quote/DSNKY : 93
+https://ca.finance.yahoo.com/quote/ANDE : 20.0
+https://ca.finance.yahoo.com/quote/DIS : 124
