@@ -13,7 +13,7 @@ def create_dict():
             url_price = line.split(':')
             stock_dict[url_price[0] + ":" + url_price[1]] = float(url_price[2])
 
-
+#
 def main():
     create_dict()
     for key in stock_dict:
