@@ -23,9 +23,9 @@ def remove_company():
         for i in range(len(lines)):
             if remove in lines[i]:
                 lines.pop(i)
-                file_body.truncate(0)
-                file_body.write("".join(lines))
                 break
+    with open("stock_holds.txt", 'w+') as file_body:
+        file_body.write("".join(lines))
 
 
 def save_data(stock, price):
