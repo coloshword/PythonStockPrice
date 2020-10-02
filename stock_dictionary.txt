@@ -1,6 +1,0 @@
-https://ca.finance.yahoo.com/quote/FCEL
-https://ca.finance.yahoo.com/quote/BAC
-https://ca.finance.yahoo.com/quote/PDYPY
-https://ca.finance.yahoo.com/quote/MRNA
-https://ca.finance.yahoo.com/quote/DSNKY
-https://ca.finance.yahoo.com/quote/ANDE
