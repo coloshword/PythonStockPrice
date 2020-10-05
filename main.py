@@ -9,15 +9,18 @@ buy_dict = {}
 def create_dict(text_file):
     global stock_dict
     global buy_dict
-    if text_file == "stock_dict":
+    if text_file == "stock_holds.txt":
         stock_dict = {}
-    else:
+    elif text_file == "stock_buys.txt":
         buy_dict = {}
     with open(text_file, 'r') as fh:
         for line in fh.readlines():
             line = line.replace('\n', '')
             url_price = line.split(':')
-            stock_dict[url_price[0] + ":" + url_price[1]] = float(url_price[2])
+            if text_file == "stock_holds.txt":
+                stock_dict[url_price[0] + ":" + url_price[1]] = float(url_price[2])
+            else:
+                buy_dict[url_price[0] + ":" + url_price[1]] = float(url_price[2])
 
 
 def check_holds():
@@ -30,8 +33,16 @@ def check_holds():
         header = key[35:].replace(' ', "")
         print(header + " : $" + price_now)
 
-#
-# def check_buys():
+
+def check_buys():
+    create_dict('stock_buys.txt')
+    for key in buy_dict:
+        page = requests.get(key.replace(' ', ''))
+        soup = BeautifulSoup(page.content, 'html.parser')
+        price_now = soup.find('div', {'class': 'My(6px) Pos(r) smartphone_Mt(6px)'}).find('span').text
+        check_value_buy(key, float(price_now))
+        header = key[35:].replace(' ', "")
+        print(header + " : $" + price_now)
 
 
 def notify(title, text):
@@ -47,8 +58,17 @@ def check_value_sell(company, current_price):
         notify('SELL', message)
 
 
+def check_value_buy(company, current_price):
+    value_to_check = buy_dict[company]
+    if current_price <= value_to_check:
+        message = f" Buy {company[35:]}, it is {current_price - value_to_check} below your buy price"
+        notify('SELL', message)
+
+
 while True:
     try:
+        print('-' * 15, "WATCHLIST", '-' * 15)
+        check_buys()
         print('-' * 15, "CURRENT STOCKS IN POSSESSION", '-' * 15)
         check_holds()
         time.sleep(30)

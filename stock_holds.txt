@@ -1,7 +1,5 @@
-https://ca.finance.yahoo.com/quote/FCEL : 2.23
-https://ca.finance.yahoo.com/quote/PDYPY : 80.20
 https://ca.finance.yahoo.com/quote/DSNKY : 93
-https://ca.finance.yahoo.com/quote/ANDE : 19.60
 https://ca.finance.yahoo.com/quote/DIS : 124
-https://ca.finance.yahoo.com/quote/WIX : 259.27
 https://ca.finance.yahoo.com/quote/SAVA : 11.38
+https://ca.finance.yahoo.com/quote/BABA : 289
+https://ca.finance.yahoo.com/quote/BNGO : 0.63
